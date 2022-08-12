@@ -1,16 +1,12 @@
 class Solution:
     def myPow(self, x: float, n: int) -> float:
-        def recur(m,n):
-            if n==0:
-                return 1
-            if n==1:
-                return m
-            else:
-                temp=recur(m,n//2)
-                if n%2!=0:
-                    return temp*temp*m
-                else:
-                    return temp*temp
-        if n<0:
-            return (1/recur(x,abs(n)))
-        return recur(x,abs(n))
+        if (n < 0):
+            n= abs(n)
+            x= 1/x
+        if n == 0:
+            return 1
+        elif n%2 == 0 :
+            temp = self.myPow(x,n//2)
+            return temp*temp
+        else:
+            return x * self.myPow(x,n-1)

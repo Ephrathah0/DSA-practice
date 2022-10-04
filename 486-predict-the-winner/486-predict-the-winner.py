@@ -9,10 +9,10 @@ class Solution:
                 return 0
             
             if chance == 1:
-                # player 1 gets to pick
+                
                 y =  max(nums[i] + fun(i+1, j, 2), nums[j] + fun(i, j-1, 2))
             else:
-                # player 2 gets to pick
+                
                 y =  min(fun(i+1, j, 1), fun(i,j-1, 1))
                 
             lookup[(i,j,chance)] = y

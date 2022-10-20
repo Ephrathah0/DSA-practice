@@ -16,10 +16,11 @@ class RandomizedSet:
         if val not in self.indices:
             return False
         
+        idx = self.indices[val]
         self.indices[self.RandomList[-1]] = self.indices[val]
-        self.RandomList[self.indices[val]], self.RandomList[-1] =self.RandomList[-1],self.RandomList[self.indices[val]]  
-        self.RandomList.pop()
+        self.RandomList[idx], self.RandomList[-1] = self.RandomList[-1],self.RandomList[idx] 
         del self.indices[val]
+        self.RandomList.pop()
         return True
         
     def getRandom(self) -> int:

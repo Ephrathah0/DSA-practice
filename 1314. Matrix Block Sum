@@ -1,0 +1,28 @@
+class Solution:
+    def matrixBlockSum(self, mat: List[List[int]], k: int) -> List[List[int]]:
+        def add(matrix, r1,r2, c1,c2):
+            x = 0
+            for r in range(r1,r2+1):
+                for c in range(c1,c2+1):
+                    x+= matrix[r][c]
+            return x 
+        m = len(mat)
+        n = len(mat[0])
+        ans =  [ [ 0 for i in range(n) ] for j in range(m) ]
+        r1=r2=c1=c2=0
+        for r in range(0, m):
+            for c in range(0, n):
+                r1 = r-k
+                if r1 <0:
+                    r1 = 0
+                r2 = r+k
+                if r2 >= m:
+                    r2 = m-1
+                c1 = c - k
+                if c1 <0:
+                    c1 = 0
+                c2 = c + k
+                if c2 >= n:
+                    c2 = n-1
+                ans[r][c] = add(mat ,r1,r2, c1,c2) 
+        return ans

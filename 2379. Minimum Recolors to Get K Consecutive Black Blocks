@@ -1,0 +1,8 @@
+class Solution:
+    def minimumRecolors(self, blocks: str, k: int) -> int:
+        black = bcount = blocks[:k-1].count('B')
+        for i in range(k-1, len(blocks)):
+            bcount += blocks[i] == 'B'
+            black = max(black, bcount)
+            bcount -= blocks[i - k + 1] == 'B'
+        return k - black

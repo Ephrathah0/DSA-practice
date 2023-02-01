@@ -1,0 +1,12 @@
+class Solution:
+    def earliestFullBloom(self, plantTime: List[int], growTime: List[int]) -> int:
+        arr = []
+        for i in range(len(plantTime)):
+            arr.append([plantTime[i],growTime[i]])
+        arr=sorted(arr,key=lambda x:x[1],reverse=True)
+        res=-1
+        day=-1
+        for x , y in arr:
+            day+=x
+            res=max(res,day+y+1)
+        return res

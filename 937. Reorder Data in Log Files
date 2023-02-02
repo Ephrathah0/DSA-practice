@@ -1,0 +1,14 @@
+class Solution:
+    def reorderLogFiles(self, logs: List[str]) -> List[str]:
+        digit = []
+        letter = []
+        for i in logs:
+            if i[-1].isdigit():
+                digit.append(i)
+            else:
+                letter.append(i)
+        letter = [x.split(' ',maxsplit=1) for x in letter]
+        letter = sorted(letter,key = lambda x:(x[1],x[0]))
+        letter = [' '.join(x) for x in letter]
+        
+        return letter+digit

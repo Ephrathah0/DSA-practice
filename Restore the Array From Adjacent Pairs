@@ -1,0 +1,24 @@
+class Solution:
+    def restoreArray(self, adjacentPairs: List[List[int]]) -> List[int]:
+        dic=defaultdict(list)
+        for u,v in adjacentPairs:
+            dic[u].append(v)
+            dic[v].append(u)
+        
+        cur=None
+        for u in dic:
+            if len(dic[u])==1:
+                cur=u
+                break
+        ans=[]
+        x=set()  
+        while cur!=None:  
+            ans.append(cur)
+            x.add(cur)
+            adjacent=dic[cur]
+            cur=None
+            for i in adjacent: 
+                if i not in x:
+                    cur=i
+        return ans
+        

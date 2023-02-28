@@ -1,0 +1,21 @@
+class Solution:
+    def findShortestSubArray(self, nums: List[int]) -> int:
+        dict_ = {}
+        l=len(nums)
+        for i in range(l):
+            if nums[i] in dict_:
+                dict_[nums[i]][0]+=1
+                dict_[nums[i]][2]=i-dict_[nums[i]][1] 
+            else:
+                dict_[nums[i]] = [1,i,0] 
+        max_c=0 
+        for i in dict_:
+            max_c = max(max_c,dict_[i][0])
+        nums_max_c = []
+        for i in dict_:
+            if dict_[i][0] == max_c:
+                nums_max_c.append(i)        
+        min_dist=51000
+        for i in nums_max_c:
+            min_dist = min(min_dist,dict_[i][2])
+        return min_dist+1
